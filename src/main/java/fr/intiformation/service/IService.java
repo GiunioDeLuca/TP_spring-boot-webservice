@@ -15,6 +15,6 @@ public interface IService {
 	
 	public List<Etudiant> findAll();
 	
-	public void updateProduit(Etudiant etudiant);
+	public void updateEtudiant(Etudiant etudiant);
 
 }

@@ -35,7 +35,7 @@ public class ServiceImpl implements IService{
 	}
 
 	@Override
-	public void updateProduit(Etudiant etudiant) {
+	public void updateEtudiant(Etudiant etudiant) {
 		etudDAO.save(etudiant);
 	}
 
