@@ -1,9 +1,18 @@
 package fr.intiformation.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Etudiant {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Etudiant implements Serializable{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEtudiant;
 	private String nom;
 	private String prenom;
