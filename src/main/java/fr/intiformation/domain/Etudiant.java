@@ -3,12 +3,19 @@ package fr.intiformation.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@XmlRootElement
 public class Etudiant implements Serializable{
 
 	@Id
@@ -16,9 +23,21 @@ public class Etudiant implements Serializable{
 	private Long idEtudiant;
 	private String nom;
 	private String prenom;
+	@XmlTransient
 	private Date dateNaissance;
 	private int matricule;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Formation formation; 
+	
+	
+	
+	public Formation getFormation() {
+		return formation;
+	}
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
 	public Long getIdEtudiant() {
 		return idEtudiant;
 	}
@@ -49,5 +68,12 @@ public class Etudiant implements Serializable{
 	public void setMatricule(int matricule) {
 		this.matricule = matricule;
 	}
+	@Override
+	public String toString() {
+		return "Etudiant [idEtudiant=" + idEtudiant + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance="
+				+ dateNaissance + ", matricule=" + matricule + ", formation=" + formation + "]";
+	}
 		
+	
+	
 }
