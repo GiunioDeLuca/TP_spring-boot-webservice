@@ -18,4 +18,10 @@ public interface EtudiantDAO extends JpaRepository<Etudiant, Long> {
 	@Modifying
 	@Query("update Etudiant e set e.formation.idFormation=:idFormation where e.idEtudiant = :idEtudiant ")
 	public void ajouterEtudiantFormation(@Param("idEtudiant") Long idEtudiant, @Param("idFormation") Long idFormation);
+
+	@Modifying
+	@Query("update Etudiant e set e.ordinateur.idOrdinateur=:idOrdinateur where e.idEtudiant = :idEtudiant ")
+	public void assignerOrdinateurEtudiant(@Param("idEtudiant") Long idEtudiant, @Param("idOrdinateur") Long idOrdinateur);
+
+
 }

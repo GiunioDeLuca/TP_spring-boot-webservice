@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import fr.intiformation.dao.EtudiantDAO;
 import fr.intiformation.dao.FormationDAO;
+import fr.intiformation.dao.OrdinateurDAO;
 import fr.intiformation.domain.Etudiant;
 import fr.intiformation.domain.Formation;
+import fr.intiformation.domain.Ordinateur;
 
 @Service
 public class ServiceImpl implements IService{
@@ -18,6 +20,9 @@ public class ServiceImpl implements IService{
 	
 	@Autowired
 	FormationDAO formDAO;
+	
+	@Autowired
+	OrdinateurDAO ordiDAO;
 	
 	@Override
 	public Etudiant ajouterEtudiant(Etudiant etudiant) {
@@ -75,5 +80,50 @@ public class ServiceImpl implements IService{
 		return form;
 	}
 
+	@Override
+	public boolean ajouterEtudiantFormation(Long idEt, Long idForm) {
+		etudDAO.ajouterEtudiantFormation(idEt, idForm);
+		return true;
+	}
+
+	@Override
+	public List<Etudiant> findEtudiantFormation(Long idForm) {
+		return formDAO.findById(idForm).get().getEtudiants();
+	}
+
+	@Override
+	public Ordinateur ajouterOrdinateur(Ordinateur ordi) {
+		ordiDAO.save(ordi);
+		return ordi;
+	}
+
+	@Override
+	public Ordinateur getOrdinateur(Long id) {
+		return ordiDAO.findById(id).get();
+	}
+
+	@Override
+	public boolean deleteOrdinateur(Long id) {
+		ordiDAO.deleteById(id);
+		return true;
+	}
+
+	@Override
+	public List<Ordinateur> findAllOrdinateur() {
+		return ordiDAO.findAll();
+	}
+
+	@Override
+	public Ordinateur updateOrdinateur(Ordinateur ordi) {
+		ordiDAO.save(ordi);
+		return ordi;
+	}
+
+	@Override
+	public boolean assignerOrdinateurEtudiant(Long idEtudiant, Long idOrdinateur) {
+		etudDAO.assignerOrdinateurEtudiant(idEtudiant, idOrdinateur);
+		return true;
+	}
+		
 	
 }

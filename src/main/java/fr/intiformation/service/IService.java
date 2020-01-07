@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.intiformation.domain.Etudiant;
 import fr.intiformation.domain.Formation;
+import fr.intiformation.domain.Ordinateur;
 
 
 public interface IService {
@@ -20,6 +21,18 @@ public interface IService {
 	public boolean deleteFormation(Long id);	
 	public List<Formation> findAllFormation();	
 	public Formation updateFormation(Formation form);
+	
+	public boolean ajouterEtudiantFormation(Long idEt, Long idForm);
+	public List<Etudiant> findEtudiantFormation(Long idForm);
+	public boolean assignerOrdinateurEtudiant(Long idEtudiant,Long idOrdinateur);
+	
+	// crud pour ordinateur
+	public Ordinateur ajouterOrdinateur(Ordinateur ordi);	
+	public Ordinateur getOrdinateur(Long id);	
+	public boolean deleteOrdinateur(Long id);	
+	public List<Ordinateur> findAllOrdinateur();	
+	public Ordinateur updateOrdinateur(Ordinateur ordi);
+	
 	
 	
 }

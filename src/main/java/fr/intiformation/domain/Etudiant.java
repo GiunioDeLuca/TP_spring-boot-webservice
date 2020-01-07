@@ -10,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @XmlRootElement
@@ -27,11 +29,22 @@ public class Etudiant implements Serializable{
 	private Date dateNaissance;
 	private int matricule;
 	
+	//@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Formation formation; 
 	
+	//@JsonIgnore
+	@OneToOne()
+	private Ordinateur ordinateur;
 	
 	
+	
+	public Ordinateur getOrdinateur() {
+		return ordinateur;
+	}
+	public void setOrdinateur(Ordinateur ordinateur) {
+		this.ordinateur = ordinateur;
+	}
 	public Formation getFormation() {
 		return formation;
 	}
